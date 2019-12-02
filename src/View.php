@@ -9,11 +9,20 @@ final class View
     private $template;
     private $variables = [];
 
+    /**
+     * View constructor.
+     * @param string $template
+     */
     public function __construct(string $template)
     {
         $this->template = $template;
     }
 
+    /**
+     * @param string $variable
+     * @param $value
+     * @return View
+     */
     public function assign(string $variable, $value): self
     {
         $this->variables[$variable] = $value;
@@ -21,6 +30,9 @@ final class View
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function show(): string
     {
         $var = function (string $variable) {
@@ -50,6 +62,10 @@ final class View
         return ob_get_clean();
     }
 
+    /**
+     * @param string $variable
+     * @return mixed|null
+     */
     private function var(string $variable)
     {
         if (isset($this->variables[$variable])) {
@@ -59,16 +75,27 @@ final class View
         return null;
     }
 
+    /**
+     * @return bool
+     */
     private function auth(): bool
     {
         return Session::exists('user_id');
     }
 
+    /**
+     * @param string $key
+     * @return mixed|null
+     */
     private function session(string $key)
     {
         return Session::get($key);
     }
 
+    /**
+     * @param string $url
+     * @return string
+     */
     private function url(string $url = ''): string
     {
         $path = Registry::getInstance()->get('path');

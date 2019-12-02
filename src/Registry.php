@@ -13,6 +13,9 @@ final class Registry
      */
     private $data;
 
+    /**
+     * Registry constructor.
+     */
     public function __construct()
     {
         $this->data = [];
@@ -31,6 +34,11 @@ final class Registry
         }
     }
 
+    /**
+     * Method that returns a key if exists
+     * @param string $key
+     * @return mixed|null
+     */
     public function get(string $key)
     {
         if ($key != null) {
@@ -44,6 +52,9 @@ final class Registry
         return null;
     }
 
+    /**
+     * Load the data from the config file
+     */
     private function load(): void
     {
         $fileconf = ROOT . 'config.json';

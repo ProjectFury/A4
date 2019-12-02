@@ -8,6 +8,9 @@ trait Singleton
 {
     private static $instance;
 
+    /**
+     * @return Singleton
+     */
     public static function getInstance(): self
     {
         if (!self::$instance instanceof self) {

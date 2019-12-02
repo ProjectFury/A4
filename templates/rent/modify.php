@@ -10,7 +10,7 @@ include TEMPLATES . 'layout/header.php';
         <form class="w-100" method="POST" action="<?= $url('rent/modify/id/' . $rent['id']); ?>">
             <div class="col-md-12">Nombre<br><input style="width: 50%;" type="text" name="name" required placeholder="Introduce el nombre del inmueble" value="<?= $rent['name']; ?>"></div>
             <div class="col-md-12">Descripción<br><textarea style="width: 50%;" name="description" required placeholder="Introduce el nombre del inmueble"><?= $rent['description']; ?></textarea></div>
-            <div class="col-md-12">Precio<br><input style="width: 50%;" type="text" name="price" required placeholder="999 €" value="<?= $rent['price']; ?>"></div>
+            <div class="col-md-12">Precio<br><input style="width: 50%;" type="number" step="0.01" min="0"  name="price" required placeholder="999 €" value="<?= $rent['price']; ?>"></div>
             <button class="mt-1 btn btn-primary" type="submit">ENVIAR</button>
         </form>
     </div>

@@ -11,6 +11,11 @@ use Rentit\Session;
 
 final class RentController extends Controller
 {
+    /**
+     * Delete an existing rent if user has created it
+     * @param Request $request
+     * @return string
+     */
     public function delete(Request $request): string
     {
         $rent = new Rent();
@@ -30,6 +35,11 @@ final class RentController extends Controller
         return '';
     }
 
+    /**
+     * Publish new rent
+     * @param Request $request
+     * @return string
+     */
     public function publish(Request $request): string
     {
         $view = $this->view('rent/publish');
@@ -54,6 +64,11 @@ final class RentController extends Controller
         return $view->show();
     }
 
+    /**
+     * Modify rent values if user has created it
+     * @param Request $request
+     * @return string
+     */
     public function modify(Request $request): string
     {
         $view = $this->view('rent/modify');

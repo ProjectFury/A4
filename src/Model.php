@@ -16,25 +16,32 @@ abstract class Model
      * @var \PDOStatement
      */
     protected $stmt;
-    //datos de intercamvio con eñ controlador
     protected $data;
 
+    /**
+     * Model constructor.
+     */
     function __construct()
     {
-        //singleton acces to DDBB
-        //usamos la clase creada DB para entrar a la BBDD con singleton
-        //osea, creamos el usuario
+
         $this->db = Database::getInstance();
     }
-    //creamos nuestras funciones
-    //prepara la sentencia
+
+    /**
+     * We prepare the query to be executed
+     * @param string $sql
+     */
     public function query(string $sql): void
     {
-        //el prepare sirve para prepatar la sentencia del PDO, osea, del mysql
+
         $this->stmt = $this->db->prepare($sql);
     }
-    //nos permite ligar los parámetros de PHP con los de la consulta SQL, lo hacemos para evitar atauqes a nuestra BBDD
-    //pasamos parametro y valor
+
+    /**
+     * Parameter binding function
+     * @param $param
+     * @param $value
+     */
     public function bind($param, $value): void
     {
         switch ($value) {
@@ -54,34 +61,47 @@ abstract class Model
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    //devolvemos la ejecución
+    /**
+     * Query execution function
+     * @return bool
+     */
     public function execute(): bool
     {
         return $this->stmt->execute();
     }
 
-    //recogeremos los datos con el fech_all en unn array asosiativo
+    /**
+     * Query results fetch function
+     * @return array
+     */
     public function resultSet(): array
     {
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //devuelve un único resultado
+    /**
+     * @return mixed
+     */
     public function singleSet()
     {
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    //el numero de elementos de la sentencia
+    /**
+     * Count rows of the query result
+     * @return int
+     */
     public function rowCount(): int
     {
         return $this->stmt->rowCount();
     }
 
-    //devuelve el ID del último elemento insertado
+    /**
+     * Return the object with the highest ID
+     * @return string
+     */
     public function lastInsertId(): string
     {
         return $this->db->lastInsertId();
     }
-    //ORM - mapeado de objetos relacioles
 }

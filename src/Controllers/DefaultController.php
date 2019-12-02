@@ -11,6 +11,11 @@ use Rentit\Session;
 
 final class DefaultController extends Controller
 {
+    /**
+     * Home view function
+     * @param Request $request
+     * @return string
+     */
     public function index(Request $request): string
     {
         $rent = new Rent();

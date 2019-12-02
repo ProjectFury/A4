@@ -11,6 +11,11 @@ use Rentit\Session;
 
 class UserController extends Controller
 {
+    /**
+     * User login function
+     * @param Request $request
+     * @return string
+     */
     public function login(Request $request): string
     {
         $view = $this->view('user/login');
@@ -34,6 +39,11 @@ class UserController extends Controller
         return $view->show();
     }
 
+    /**
+     * User register function
+     * @param Request $request
+     * @return string
+     */
     public function register(Request $request): string
     {
         $view = $this->view('user/register');
@@ -59,6 +69,11 @@ class UserController extends Controller
         return $view->show();
     }
 
+    /**
+     * User logout function
+     * @param Request $request
+     * @return string
+     */
     public function logout(Request $request): string
     {
         Session::destroy();

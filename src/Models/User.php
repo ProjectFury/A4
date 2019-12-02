@@ -30,6 +30,12 @@ final class User extends Model
         return $result[0];
     }
 
+    /**
+     * User login function
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
     public function login(string $username, string $password): bool
     {
         $sql = 'SELECT * FROM users WHERE username = :username';
@@ -51,6 +57,12 @@ final class User extends Model
         return true;
     }
 
+    /**
+     * User register function
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
     public function register(string $username, string $password): bool
     {
         $sql = 'SELECT * FROM user WHERE username = :username';

@@ -9,6 +9,9 @@ final class Database extends PDO
 {
     use Singleton;
 
+    /**
+     * Database constructor.
+     */
     public function __construct()
     {
         $config = Registry::getInstance();

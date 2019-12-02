@@ -20,6 +20,9 @@ final class Request
         $this->setParams(explode('/', $requestString));
     }
 
+    /**
+     * Action and Controller assignment
+     */
     private function extractURI(): void
     {
         $length = count($this->arrURI);
